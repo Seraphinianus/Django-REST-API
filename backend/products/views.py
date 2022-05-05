@@ -4,7 +4,7 @@ from .models import Product
 from .serializers import ProductSerializer
 
 
-class ProductCreateAPIView(generics.CreateAPIView):
+class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
@@ -19,8 +19,8 @@ class ProductCreateAPIView(generics.CreateAPIView):
         # you can send here a Django signal if you actually know what you're doing
 
 
+product_list_create_view = ProductListCreateAPIView.as_view()
 
-product_create_view = ProductCreateAPIView.as_view()
 
 class ProductDetailAPIView(generics.RetrieveAPIView):
     queryset = Product.objects.all()
@@ -29,3 +29,14 @@ class ProductDetailAPIView(generics.RetrieveAPIView):
 
 
 product_detail_view = ProductDetailAPIView.as_view()
+
+
+class ProductListAPIView(generics.ListAPIView):
+    """
+    Not going to use this because of ProductListCreateView
+    """
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+
+product_list_view = ProductListAPIView.as_view()
