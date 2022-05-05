@@ -38,11 +38,20 @@ class ProductListAPIView(generics.ListAPIView):
     """
     Not going to use this because of ProductListCreateView
     """
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
+#     queryset = Product.objects.all()
+#     serializer_class = ProductSerializer
+#
+#
+# product_list_view = ProductListAPIView.as_view()
 
+# I think I am going to stay away from the generic views approach since I am not going to build
+# the "update" and "destroy" methods just yet. Let's see if we can respect the boundaries of the PDF with
+# what we already built until now.
 
-product_list_view = ProductListAPIView.as_view()
+# The good thing about generics is their readability and ease of implementation, as the "@api_view" decorator
+# tends to get increasingly complicated and difficult to follow when passed to another dev. If I was in a team,
+# I would've hugged those generics with all my love and care!
+
 
 @api_view(['GET', 'POST'])
 def product_alt_view(request, pk=None, *args, **kwargs):
